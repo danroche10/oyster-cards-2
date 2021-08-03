@@ -10,15 +10,18 @@ class JourneyLog
   end
 
   def start(entry_station)
-
+    current_journey = journey_class
+    current_journey.entry_station = entry_station
+    @journeys << {}
+    @journeys.last[entry_station] = ""
   end
 
   def finish(exit_station)
-  
+    @journeys.last[:entry_station] = exit_station
   end
 
-  def journeys
-
+  def list_journeys
+    print journeys
   end
 
   private
