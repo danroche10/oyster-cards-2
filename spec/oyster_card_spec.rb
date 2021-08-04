@@ -104,9 +104,6 @@ describe Oystercard do
       expect { card.touch_out(station) }.to change { card.journeys.count }.by(1)
     end
   end
-
-
-
-
+  
 end
 

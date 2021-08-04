@@ -1,4 +1,4 @@
-require './lib/journey'
+require_relative 'journey'
 
 class JourneyLog
   attr_accessor :entry_station, :exit_station
@@ -20,6 +20,7 @@ class JourneyLog
   def finish(exit_station)
     @exit_station = exit_station
     @journeys << { entry_station: entry_station, exit_station: exit_station }
+    print journey_class.fare
     entry_station = nil
   end
 
@@ -33,3 +34,10 @@ class JourneyLog
 
   end
 end
+
+my_journey_log = JourneyLog.new
+my_journey_log.start("Farringdon")
+my_journey_log.finish("Euston")
+my_journey_log.start("Angel")
+my_journey_log.finish("Oakwood")
+my_journey_log.list_journeys

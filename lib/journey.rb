@@ -3,7 +3,9 @@ class Journey
 
   def initialize(entry_station=nil, exit_station=nil)
     @entry_station = entry_station
+    print @entry_station
     @exit_station = exit_station
+    print @exit_station
   end
 
   def complete?
