@@ -1,7 +1,7 @@
 require './lib/journey'
 
 class JourneyLog
-
+  attr_accessor :entry_station, :exit_station
   attr_reader :journey_class, :journeys
 
   def initialize(journey_class: Journey.new)
@@ -10,14 +10,17 @@ class JourneyLog
   end
 
   def start(entry_station)
+    exit_station = nil
     current_journey = journey_class
     current_journey.entry_station = entry_station
-    @journeys << {}
-    @journeys.last[entry_station] = ""
+    @entry_station = entry_station
+    
   end
 
   def finish(exit_station)
-    @journeys.last[:entry_station] = exit_station
+    @exit_station = exit_station
+    @journeys << { entry_station: entry_station, exit_station: exit_station }
+    entry_station = nil
   end
 
   def list_journeys
