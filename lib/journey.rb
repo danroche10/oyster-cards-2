@@ -21,8 +21,9 @@ class Journey
   end
 
   def forgot_to_tap_out?
-    @status[:exit_station] == "None recorded" && @status[:entry_station] != "None recorded"
+    @status[:entry_station] != "None recorded" && @status[:exit_station] == "None recorded"
   end
+
   # def fare
   #   #if incomplete then add penalty = £6
   #   #otherwise calculate from entry anexit based on some rules - for the moment return the minimum = £1
