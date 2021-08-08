@@ -4,10 +4,6 @@ describe Oystercard do
   let(:station) { double :station }
   let(:card) { described_class.new(10) }
 
-  it "has a balance of 0" do
-    expect(subject.balance).to eq 0
-  end
-
   describe '#top_up' do
 
     it 'responds to top_up' do
@@ -43,14 +39,22 @@ describe Oystercard do
       expect { subject.touch_in(station) }.to raise_error "Insufficient funds"
     end
 
+    it "deducts £6 when user forgot to tap out" do
+      card.touch_in(station)
+      expect { card.touch_in(station) }.to change { card.balance }.by(-6)
+    end
+
   end
 
   describe '#touch_out' do
 
     it 'deduct from £1 from balance' do
-      expect { card.touch_out(station) }.to change { card.balance }.by(-1)
-    end
+      card.touch_in(station)
+      card.touch_in(station)    end
 
+    it "deducts £6 when user hasn't tapped in" do
+      expect { card.touch_out(station) }.to change { card.balance }.by(-6)
+    end
   end
     
 end

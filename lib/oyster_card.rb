@@ -11,7 +11,7 @@ class Oystercard
   DEFAULT_AMOUNT = 0
 
   def initialize(amount=DEFAULT_AMOUNT)
-    @balance = DEFAULT_AMOUNT
+    @balance = amount
     @journey_log = JourneyLog.new
   end
 
@@ -31,10 +31,6 @@ class Oystercard
     @journey_log.finish(station)
   end
 
-  def check_journey
-    @current_journey.in_journey?
-  end
-
   private
 
   def deduct(amount)
@@ -43,33 +39,33 @@ class Oystercard
 
 end
 
-# Full journey
+# # Full journey
 
 
-# log = Journey
-my_oyster = Oystercard.new
-my_oyster.top_up(50)
-my_oyster.touch_in("Southgate")
-my_oyster.touch_out("Farringdon")
+# # log = Journey
+# my_oyster = Oystercard.new
+# my_oyster.top_up(50)
+# my_oyster.touch_in("Southgate")
+# my_oyster.touch_out("Farringdon")
 
-p my_oyster.balance
+# p my_oyster.balance
 
 
-# forgot tap in
+# # forgot tap in
 
-my_oyster.touch_out("Farringdon")
-# p my_oyster.journey_history
-p my_oyster.balance
+# my_oyster.touch_out("Farringdon")
+# # p my_oyster.journey_history
+# p my_oyster.balance
 
-#  forgot to tap out
-my_oyster.touch_in("Southgate")
+# #  forgot to tap out
+# my_oyster.touch_in("Southgate")
 
-#  and then a full journey again
-my_oyster.touch_in("Southgate")
-p my_oyster.balance
-my_oyster.touch_out("Morden")
-p my_oyster.balance
-p my_oyster.journey_log.list_journeys
+# #  and then a full journey again
+# my_oyster.touch_in("Southgate")
+# p my_oyster.balance
+# my_oyster.touch_out("Morden")
+# p my_oyster.balance
+# p my_oyster.journey_log.list_journeys
 
 
 

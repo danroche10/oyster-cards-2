@@ -33,7 +33,7 @@ class JourneyLog
 
   def list_journeys
     @journey_history.each do |journey|
-      print "Entry station: #{journey[:entry_station]} --> Exit station: #{journey[:exit_station]}\n"
+      "Entry station: #{journey[:entry_station]} --> Exit station: #{journey[:exit_station]}\n"
     end
   end
 
@@ -51,25 +51,6 @@ class JourneyLog
 
   end
 end
-
-# journey_log = JourneyLog.new
-# journey_log.start("Farringdon")
-# journey_log.finish("Angel")
-# # print journey_log.journey_history
-
-# # forgot tap in
-# journey_log.finish("Farringdon")
-# # print journey_log.journey_history
-
-# # forgot to tap out
-# journey_log.start("Morden")
-
-# # and then full journey again
-# journey_log.start("Oakwood")
-# journey_log.finish("High Barnet")
-# print journey_log.journey_history
-
-
 
 
 

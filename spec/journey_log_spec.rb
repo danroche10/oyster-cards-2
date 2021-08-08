@@ -6,18 +6,15 @@ describe JourneyLog do
 
   describe "#initialize" do
     it "initially has no journey history" do
-      expect(subject.journeys).to eq []
+      expect(subject.journey_history).to eq []
     end
   end
 
   describe "#start" do
-    it "creates new instance of journey class" do
+    it "starting and finshing journey updates journey history" do
       subject.start(station)
       subject.finish(station)
-      subject.list_journeys
-      expect(subject.journeys.length).to eq 1
+      expect(subject.journey_history.length).to eq 1
     end
   end
-
-
 end
