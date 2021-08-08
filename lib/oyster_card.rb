@@ -3,7 +3,7 @@ require_relative 'journey'
 
 class Oystercard
 
-  attr_accessor :balance, :current_journey, :journey_history 
+  attr_accessor :balance, :current_journey, :journey_log
 
   MIN_CHARGE = 1
   
@@ -29,7 +29,6 @@ class Oystercard
   def touch_out(station)
     deduct(@journey_log.touch_out_fare)
     @journey_log.finish(station)
-
   end
 
   def check_journey
@@ -37,20 +36,6 @@ class Oystercard
   end
 
   private
-
-  # # def fare
-  # #   if current_journey.status[:exit_station] == "None recorded" && current_journey.status[:entry_station] != "None recorded"
-  # #     PENALTY_FARE
-  # #   else
-  # #     MIN_CHARGE
-  # #   end
-  # # end
-
-  # def forgot_tap_out
-  #   deduct(PENALTY_FARE)
-  #   @journey_history << @current_journey.status
-  #   @current_journey = Journey.new
-  # end
 
   def deduct(amount)
     @balance -= amount
@@ -84,6 +69,7 @@ my_oyster.touch_in("Southgate")
 p my_oyster.balance
 my_oyster.touch_out("Morden")
 p my_oyster.balance
+p my_oyster.journey_log.list_journeys
 
 
 

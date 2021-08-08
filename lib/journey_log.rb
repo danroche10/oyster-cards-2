@@ -12,18 +12,14 @@ class JourneyLog
   end
 
   def start(station)
-
     forgot_tap_out if @current_journey.forgot_to_tap_out?
-
     @current_journey.start_journey(station)
-
   end
 
   def finish(station)
     @current_journey.finish_journey(station)
     @journey_history << @current_journey.status
     @current_journey = Journey.new
-
   end
 
   def check_journey
@@ -36,7 +32,9 @@ class JourneyLog
   end
 
   def list_journeys
-    print @journeys_history
+    @journey_history.each do |journey|
+      print "Entry station: #{journey[:entry_station]} --> Exit station: #{journey[:exit_station]}\n"
+    end
   end
 
   def touch_in_fare
