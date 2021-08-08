@@ -41,8 +41,12 @@ class JourneyLog
     @current_journey.forgot_to_tap_out? ? PENALTY_FARE : 0
   end
 
-  def touch_out_fare
-    !@current_journey.in_journey? ? PENALTY_FARE : MIN_CHARGE
+  def touch_out_fare(station)
+    if !@current_journey.in_journey?
+      PENALTY_FARE 
+    else
+      1 + (station.zone - @current_journey.status[:entry_station].zone).abs
+    end
   end
 
   private
@@ -51,6 +55,4 @@ class JourneyLog
 
   end
 end
-
-
 
