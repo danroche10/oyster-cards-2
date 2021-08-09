@@ -45,32 +45,28 @@ Morden = Station.new("Morden", 3)
 Oakwood = Station.new("Morden", 5)
 High_Barnet = Station.new("High Barnet", 4)
 
-# Full journey
+my_oyster = Oystercard.new
+my_oyster.top_up(50)
+my_oyster.touch_in(Southgate)
+my_oyster.touch_out(Farringdon)
 
-# # log = Journey
-# my_oyster = Oystercard.new
-# my_oyster.top_up(50)
-# my_oyster.touch_in(Southgate)
-# my_oyster.touch_out(Farringdon)
+p my_oyster.balance
 
-# p my_oyster.balance
+# forgot tap in
 
+my_oyster.touch_out(Farringdon)
+# p my_oyster.journey_history
+p my_oyster.balance
 
-# # forgot tap in
+#  forgot to tap out
+my_oyster.touch_in(Southgate)
 
-# my_oyster.touch_out(Farringdon)
-# # p my_oyster.journey_history
-# p my_oyster.balance
-
-# #  forgot to tap out
-# my_oyster.touch_in(Southgate)
-
-# #  and then a full journey again
-# my_oyster.touch_in(Southgate)
-# p my_oyster.balance
-# my_oyster.touch_out(Morden)
-# p my_oyster.balance
-# p my_oyster.journey_log
+#  and then a full journey again
+my_oyster.touch_in(Southgate)
+p my_oyster.balance
+my_oyster.touch_out(Morden)
+p my_oyster.balance
+p my_oyster.journey_log
 
 
 
