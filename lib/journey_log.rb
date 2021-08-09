@@ -3,11 +3,10 @@ require_relative 'journey'
 class JourneyLog
   attr_accessor  :journey_history, :current_journey
 
-  MIN_CHARGE = 1
   PENALTY_FARE = 6
 
-  def initialize
-    @current_journey = Journey.new
+  def initialize(journey = Journey.new)
+    @current_journey = journey
     @journey_history = []
   end
 
@@ -16,19 +15,19 @@ class JourneyLog
     @current_journey.start_journey(station)
   end
 
-  def finish(station)
+  def finish(station, journey = Journey.new)
     @current_journey.finish_journey(station)
     @journey_history << @current_journey.status
-    @current_journey = Journey.new
+    @current_journey = journey
   end
 
   def check_journey
     @current_journey.in_journey?
   end
 
-  def forgot_tap_out
+  def forgot_tap_out(journey = Journey.new)
     @journey_history << @current_journey.status
-    @current_journey = Journey.new
+    @current_journey = journey
   end
 
   def list_journeys
@@ -41,18 +40,13 @@ class JourneyLog
     @current_journey.forgot_to_tap_out? ? PENALTY_FARE : 0
   end
 
-  def touch_out_fare(station)
-    if !@current_journey.in_journey?
-      PENALTY_FARE 
-    else
-      1 + (station.zone - @current_journey.status[:entry_station].zone).abs
-    end
+  def touch_out_fare(exit_station)
+    !@current_journey.in_journey? ? PENALTY_FARE : @current_journey.standard_fare(exit_station)
   end
 
   private
 
   def current_journey
-
   end
 end
 

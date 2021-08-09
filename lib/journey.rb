@@ -24,4 +24,8 @@ class Journey
     @status[:entry_station] != "None recorded" && @status[:exit_station] == "None recorded"
   end
 
+  def standard_fare(exit_station)
+    1 + (exit_station.zone - @status[:entry_station].zone).abs
+  end
+
 end
