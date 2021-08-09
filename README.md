@@ -24,7 +24,7 @@ How to use this program
 - You will also need to create some stations, making sure that you initialise them with both a name and a zone number.
 - You can make some journeys by touching in and out of the stations you have created.
 - If you either forget to tap in or out, you will be charged the penalty fare. If not, your fare will depend on how many zones you have travelled.
--------
+
 Below is an example of how to use the program:
 ```
 Southgate = Station.new("Southgate", 4)
